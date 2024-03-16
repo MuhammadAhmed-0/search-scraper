@@ -1,23 +1,7 @@
 # Import necessary libraries
 import streamlit as st
-import subprocess
-import sys
-
-# Check if BeautifulSoup is installed, if not, install it
-try:
-    import bs4
-except ImportError:
-    st.write("Installing BeautifulSoup...")
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "beautifulsoup4==4.10.0"])
-    except subprocess.CalledProcessError as e:
-        st.error(f"Error installing BeautifulSoup: {e}")
-        sys.exit(1)
-    st.write("BeautifulSoup installed successfully.")
-
-# Now import BeautifulSoup
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
 # Define a function to retrieve Google search results
 def get_google_results(query):
