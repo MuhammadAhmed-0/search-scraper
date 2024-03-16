@@ -1,22 +1,18 @@
 # Import necessary libraries
-import importlib_resources
+import streamlit as st
+import subprocess
 import sys
-
-# Check if Streamlit is installed, if not, install it
-try:
-    import streamlit as st
-except ImportError:
-    # Print an error message and exit if Streamlit is not installed
-    print("Error: Streamlit is not installed. Please install Streamlit to run this script.")
-    sys.exit(1)
 
 # Check if BeautifulSoup is installed, if not, install it
 try:
     import bs4
 except ImportError:
     st.write("Installing BeautifulSoup...")
-    importlib_resources.files("bs4").extract(".")
-    sys.path.append("bs4")
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "beautifulsoup4==4.10.0"])
+    except subprocess.CalledProcessError as e:
+        st.error(f"Error installing BeautifulSoup: {e}")
+        sys.exit(1)
     st.write("BeautifulSoup installed successfully.")
 
 # Now import BeautifulSoup
