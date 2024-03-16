@@ -1,3 +1,10 @@
+try:
+    import bs4
+except ImportError:
+    import subprocess
+    import sys
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'beautifulsoup4==4.10.0'])
+
 # Import necessary libraries
 import streamlit as st
 import requests
